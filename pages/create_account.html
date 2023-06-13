@@ -2,22 +2,22 @@
 <html lang="en-US">
 	<head>
 		<meta charset="utf-8">
-		<title>filestorage</title>
-		<link rel="stylesheet" href="style.css">
+		<title>create account</title>
+		<link rel="stylesheet" href="../style.css">
 	</head>
-
-	<body>
+  <body>
     <div class=loginbox>
-      <h1>Filestorage</h1>
-      <form method="post" action="./methods/login.py">
+      <h1>Create Account</h1>
+      <form method="post" action="../methods/create_account.py">
         <form action="/cgi-bin/hello_get.py" method="get">
           <input type="text" class="logincredentials" id="username" name="username" placeholder="username">
           <br>
           <input type="password" class="logincredentials" id="password" name="password" placeholder="password">
           <br>
-          <input type="submit" class="logincredentials" value="Login">
+          <input type="password" class="logincredentials" id="conpassword" name="conpassword" placeholder="confirm password">
+          <br>
+          <input type="submit" class="logincredentials" value="create account">
       </form>
-      <p>Dont have a login? <a href="pages/create_account.html">Create an account</a></p>
     </div>
 	</body>
-</html>
+</html> 
