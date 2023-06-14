@@ -4,7 +4,7 @@ import cgi
 import os
 from hashlib import sha256
 
-datapath = "userdata/"
+datapath = "../userdata/"
 
 def htmlTop():
     print ('''Content-type:text/html\n\n
@@ -28,7 +28,7 @@ def getData():
     credentials = (
             formData.getvalue("username"),
             formData.getvalue("password"),
-            formData.getvalue("cpassword")
+            formData.getvalue("conpassword")
             )
     return credentials
 
@@ -39,18 +39,18 @@ def createAccount(credentials):
     if credentials[1] != credentials[2]:
         print("<h1>Passwords do not match!</h1>")
         return
-    os.mkdir(datapath + credentials[0])
-    os.mkdir(datapath + credentials[0] + "/files")
+    os.mkdir(datapath + credentials[0], 0o777)
+    os.chmod(datapath + credentials[0], 0o777)
+    os.mkdir(datapath + credentials[0] + "/files", 0o777)
+    os.chmod(datapath + credentials[0] + "/files", 0o777)
     with open(datapath + credentials[0] + "/password_SHA256", "w") as wpath:
         wpath.write(sha256(credentials[1].encode('utf-8')).hexdigest())
         wpath.close()
     print("<h1>Account creation successful!</h1>")
 
-createAccount(("pooper", "abc", "abc"))
-
 if __name__ == "__main__":
     htmlTop()
-    #createAccount(getData())
+    createAccount(getData())
     htmlTail()
     
 
