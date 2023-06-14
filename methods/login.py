@@ -12,7 +12,7 @@ def htmlTop():
     <html lang="en-US">
         <head>
             <meta charset="utf-8" >
-            <title>My first server-side script. </title>	
+            <title>Login status</title>	
             <link rel="stylesheet" href="../style.css">
 
         </head>
@@ -38,15 +38,41 @@ def verifyLogin(credentials):
     if os.path.exists(datapath + credentials[0]):
         file = open(datapath + credentials[0] + "/password_SHA256").read()
         if (file == credentials[1]):
-            print("<h1>Login successful, welcome " + credentials[0] + "!</h1>")
+            return 0
         else:
-            print("<h1>Incorrect password!</h1>")
+            return 1
     else:
-        print("<h1>Invalid username!</h1>")
+        return 2
 
+def feedBack(status):
+    if (status == 0):
+        print('''
+              <div class="loginsuccessbox">
+                    <h2>Login Successful!</h2>
+                    <a href="">Continue</a>
+              </div>
+              '''
+              )
+    elif (status == 1):
+        print('''
+              <div class="loginfailbox">
+                    <h2>Incorrect Password!</h2>
+                    <a href="../index.html">Back to login</a>
+              </div>
+              '''
+              )
+    else:
+        print('''
+              <div class="loginfailbox">
+                    <h2>Incorrect Username!</h2>
+                    <a href="../index.html">Back to login</a>
+              </div>
+              '''
+              )
+                
 if __name__ == "__main__":
     htmlTop()
-    verifyLogin(getData())
+    feedBack(verifyLogin(getData()))
     htmlTail()
 
 
