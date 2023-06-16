@@ -32,13 +32,14 @@ def getData():
             )
     return credentials
 
+#0 = success
+#1 = user exists
+#2 = passwords do not match
 def createAccount(credentials):
     if os.path.exists(datapath + credentials[0]):
-        print("<h1>User already exists!</h1>")
-        return
+        return 1
     if credentials[1] != credentials[2]:
-        print("<h1>Passwords do not match!</h1>")
-        return
+        return 2
     os.mkdir(datapath + credentials[0], 0o777)
     os.chmod(datapath + credentials[0], 0o777)
     os.mkdir(datapath + credentials[0] + "/files", 0o777)
@@ -46,11 +47,38 @@ def createAccount(credentials):
     with open(datapath + credentials[0] + "/password_SHA256", "w") as wpath:
         wpath.write(sha256(credentials[1].encode('utf-8')).hexdigest())
         wpath.close()
-    print("<h1>Account creation successful!</h1>")
+    return 0
+
+def feedBack(status):
+    if (status == 0):
+        print('''
+            <div class="loginbox">
+                <h2>Account creation successful!</h2>
+                <h3><a href="../pages/login.html">return to login</a> | <a href="../index.py">return home</a><h3>
+            </div>
+            '''
+            )
+    elif (status == 1):
+         print('''
+            <div class="loginbox">
+                <h2>Username already exists!</h2>
+                <h3><a href="../pages/create_account.html">return to account creation</a> | <a href="../index.py">return home</a><h3>
+            </div>
+            '''
+            )
+
+    else:
+         print('''
+            <div class="loginbox">
+                <h2>Passwords do not match!</h2>
+                <h3><a href="../pages/create_account.html">account creation</a> | <a href="../index.py">return home</a><h3>
+            </div>
+            '''
+            )
 
 if __name__ == "__main__":
     htmlTop()
-    createAccount(getData())
+    feedBack(createAccount(getData()))
     htmlTail()
     
 
