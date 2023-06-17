@@ -2,22 +2,21 @@
 <html lang="en-US">
 	<head>
 		<meta charset="utf-8">
-		<title>filestorage</title>
+		<title>login</title>
 		<link rel="stylesheet" href="../style.css">
 	</head>
 
 	<body>
-    <div class=loginbox>
-      <h1>Filestorage</h1>
-      <form method="post" action="../methods/login.py">
-        <form action="/cgi-bin/hello_get.py" method="post">
+    <div class="loginbox">
+      <h1>Login</h1>
+      <form method="post" action="../cgi-bin/login.py">
           <input type="text" class="logincredentials" id="username" name="username" placeholder="username">
           <br>
           <input type="password" class="logincredentials" id="password" name="password" placeholder="password">
           <br>
           <input type="submit" class="logincredentials" value="Login">
       </form>
-      <p><a href="../index.py">return home</a> | <a href="create_account.html">create an account</a></p>
+      <p><a href="../index.html">return home</a> | <a href="create_account.html">create an account</a></p>
     </div>
 	</body>
 </html>

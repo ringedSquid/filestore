@@ -4,7 +4,7 @@ import cgi
 import os
 from hashlib import sha256
 
-datapath = "../userdata/"
+datapath = "userdata/"
 
 def htmlTop():
     print ('''Content-type:text/html\n\n
@@ -53,16 +53,16 @@ def feedBack(status):
     if (status == 0):
         print('''
             <div class="loginbox">
-                <h2>Account creation successful!</h2>
-                <h3><a href="../pages/login.html">return to login</a> | <a href="../index.py">return home</a><h3>
+                <h2>Account Creation Successful!</h2>
+                <h3><a href="../pages/login.html">return to login</a> | <a href="../index.html">return home</a><h3>
             </div>
             '''
             )
     elif (status == 1):
          print('''
             <div class="loginbox">
-                <h2>Username already exists!</h2>
-                <h3><a href="../pages/create_account.html">return to account creation</a> | <a href="../index.py">return home</a><h3>
+                <h2>User Already Exists!</h2>
+                <h3><a href="../pages/create_account.html">return to account creation</a> | <a href="../index.html">return home</a><h3>
             </div>
             '''
             )
@@ -71,7 +71,7 @@ def feedBack(status):
          print('''
             <div class="loginbox">
                 <h2>Passwords do not match!</h2>
-                <h3><a href="../pages/create_account.html">account creation</a> | <a href="../index.py">return home</a><h3>
+                <h3><a href="../pages/create_account.html">account creation</a> | <a href="../index.html">return home</a><h3>
             </div>
             '''
             )

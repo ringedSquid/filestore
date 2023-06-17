@@ -29,6 +29,23 @@
 	color: white;
 }
 
+.logoutcredentials[type=submit] {
+        width: 85.5%;
+        padding: 8px 8px;
+        margin: 10px 0;
+        color: red;
+        background-color: white;
+        border: 2px solid red;
+        border-radius: 4px;
+        transition-duration: 0.4s;
+        outline: none;
+}
+
+.logoutcredentials[type=submit]:hover {
+	background-color: red;	
+	color: white;
+}
+
 .loginbox {
   width: 400px;
   border: 2px solid black;
@@ -42,4 +59,87 @@
   padding: 10px;
 }
 
+.filebox {
+  overflow: hidden;
+  width: 750px;
+  background-color: white;
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.filelist {
+  float: left;
+  width: 40%; 
+  height: 480px;
+  padding: 10px 10px;
+  margin: 10px 10px;
+  border: 2px solid black;
+  border-radius: 4px;
+  overflow-y: scroll;
+}
+
+.buttonbox {
+  float: left;
+  width: 40%;
+  height: 480px;
+  padding: 10px 10px;
+  margin: 10px 10px;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.uploadbutton[type=submit] {
+        width: 100%;
+        padding: 8px 8px;
+        margin: 5px 0px;
+        color: Green;
+        background-color: white;
+        border: 2px solid Green;
+        border-radius: 4px;
+        transition-duration: 0.4s;
+        outline: none;
+}
+
+.uploadbutton[type=submit]:hover {
+	background-color: Green;	
+	color: white;
+}
+
+.selectbutton[type=file] {
+        width: 80%;
+        padding: 8px 8px;
+        margin: 5px 0px;
+        color: Green;
+        background-color: white;
+        border: 2px solid Green;
+        border-radius: 4px;
+        transition-duration: 0.4s;
+        outline: none;
+}
+
+.selectbutton[type=file]:hover {
+	background-color: Green;	
+	color: white;
+}
+
+.deletebutton[type=submit] {
+        width: 100%;
+        padding: 8px 8px;
+        margin: 5px 0px;
+        color: red;
+        background-color: white;
+        border: 2px solid red;
+        border-radius: 4px;
+        transition-duration: 0.4s;
+        outline: none;
+}
+
+.deletebutton[type=submit]:hover {
+	background-color: red;	
+	color: white;
+}
 

@@ -4,7 +4,7 @@ import cgi
 import os
 from hashlib import sha256
 
-datapath = "../userdata/"
+datapath = "userdata/"
 
 def htmlTop():
     print ('''Content-type:text/html\n\n
@@ -25,9 +25,14 @@ def htmlTail():
 
 def getData():
     formData = cgi.FieldStorage()
+    username = formData.getvalue("username")
+    password = formData.getvalue("password")
+    print(username, password)
+    if (username == None) or (password == None):
+        return False 
     credentials = (
-            formData.getvalue("username"),
-            sha256((formData.getvalue("password")).encode('utf-8')).hexdigest()
+            username,
+            sha256(password.encode('utf-8')).hexdigest()
             )
     return credentials
 
@@ -35,11 +40,13 @@ def getData():
 #1 = password incorrect
 #2 = username invalid
 def verifyLogin(credentials):
+    if credentials == False:
+        return 3
     if os.path.exists(datapath + credentials[0]):
         file = open(datapath + credentials[0] + "/password_SHA256").read()
         if (file == credentials[1]):
-            print("Set-Cookie:UserID = " + credentials[0] + ";\r\n")
-            print("Content-type:text/html\r\n\r\n")
+            print("Set-Cookie:UserID = " + credentials[0])
+            print("Set-Cookie:Pass = " + credentials[1])
             return 0
         else:
             return 1
@@ -51,7 +58,7 @@ def feedBack(status):
         print('''
               <div class="loginbox">
                     <h2>Login Successful!</h2>
-                    <h3><a href="">Continue</a></h3>
+                    <h3><a href="file_explorer.py">Continue</a></h3>
               </div>
               '''
               )
@@ -63,10 +70,18 @@ def feedBack(status):
               </div>
               '''
               )
-    else:
+    elif (status == 2):
         print('''
               <div class="loginbox">
                     <h2>Incorrect Username!</h2>
+                    <h3><a href="../pages/login.html">Back to login</a></h3>
+              </div>
+              '''
+              )
+    elif (status == 3):
+        print('''
+              <div class="loginbox">
+                    <h2>Blank Field Submitted!</h2>
                     <h3><a href="../pages/login.html">Back to login</a></h3>
               </div>
               '''
