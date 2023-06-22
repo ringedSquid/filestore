@@ -1,3 +1,3 @@
 userdata/*
-
+*.mkv
 !userdata/.gitkeep
